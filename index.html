@@ -8,26 +8,52 @@
 </head>
 
 <body>
-
   <header class="header">
-    <div class="wrap">
+    <div class="wrap headerInner">
       <div class="brand">
         <h1>Mahmudul Skincare</h1>
-        <p>Glow with confidence ✨</p>
+        <p>Premium skincare essentials ✨</p>
+      </div>
+
+      <div class="headerActions">
+        <input id="search" type="search" placeholder="Search products..." />
+        <select id="category">
+          <option value="all">All categories</option>
+        </select>
+        <a class="btn btnGhost" id="whatsBtn" href="#" target="_blank">Order on WhatsApp</a>
       </div>
     </div>
   </header>
 
   <main class="wrap">
     <section class="hero">
-      <div>
-        <h2>Premium Skincare Products</h2>
-        <p>20 products • Fast delivery • Order via WhatsApp</p>
-        <a class="btn" href="#" id="whatsBtn">Order on WhatsApp</a>
-      </div>
+      <h2>Premium Skincare Products</h2>
+      <p>20 products • Fast delivery • Order via WhatsApp</p>
+    </section>
+
+    <section id="products">
+      <div id="grid" class="grid"></div>
     </section>
   </main>
 
+  <!-- Product modal -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modalBox">
+      <button class="close" id="close">✕</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap footerTop">
+      <p>© <span id="year"></span> Mahmudul Skincare</p>
+      <div class="socialRow">
+        <a id="socialFb" class="socialIcon" target="_blank">FB</a>
+        <a id="socialIg" class="socialIcon" target="_blank">IG</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
-
