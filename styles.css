@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b0b10;
+  color: #ffffff;
+}
+
+.header {
+  background: #111;
+  padding: 20px 0;
+  border-bottom: 1px solid #222;
+}
+
+.wrap {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.brand p {
+  margin: 6px 0 0;
+  color: #ccc;
+}
+
+.hero {
+  padding: 60px 0;
+}
+
+.hero h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 16px;
+  color: #bbb;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 22px;
+  background: #ffffff;
+  color: #000;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
