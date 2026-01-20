@@ -1,13 +1,19 @@
-:root:root{
-  --bg:#ffffff;                 /* white background */
-  --text:#3b1b7a;               /* purple text */
-  --muted:rgba(59,27,122,.68);
-  --line:rgba(59,27,122,.18);
-  --accent:#6d28d9;             /* purple accent */
-  --accent2:#a855f7;            /* light purple */
+:root{
+  --bg:#ffffff;               /* white background */
+  --text:#000000;             /* black text */
+  --muted:rgba(0,0,0,.6);
+  --line:rgba(0,0,0,.12);
+
+  --accent:#2563eb;           /* blue for CTA buttons */
+  --accent2:#22c55e;          /* green secondary */
   --radius:18px;
 }
-
+html,body{
+  margin:0;
+  padding:0;
+  background:var(--bg);
+  color:var(--text);
+}
 
 
 *{box-sizing:border-box}
@@ -395,4 +401,53 @@ html.js .reveal.is-visible{
   background:rgba(255,255,255,.03);
   color:var(--text);
   cursor:pointer;
+}
+/* Glass Effect Base */
+.glass,
+.header,
+.heroCard,
+.card,
+.feature,
+.faq details{
+  background:rgba(255,255,255,.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border:1px solid rgba(255,255,255,.35);
+  box-shadow: 0 8px 30px rgba(0,0,0,.08);
+}
+.pill,
+.tag,
+.trust__item{
+  background:rgba(255,255,255,.6);
+  backdrop-filter: blur(10px);
+  border:1px solid rgba(0,0,0,.12);
+  color:#000;
+}
+.cartBtn{
+  background:rgba(255,255,255,.7);
+  backdrop-filter: blur(12px);
+  border:1px solid rgba(0,0,0,.18);
+  font-weight:800;
+  color:#000;
+}
+
+.cartCount{
+  background:#000;
+  color:#fff;
+  font-weight:900;
+}
+.btn--primary{
+  background:linear-gradient(135deg, #2563eb, #60a5fa);
+  color:#fff;
+  border:none;
+}
+
+.hero__cta .btn:not(.btn--primary){
+  background:linear-gradient(135deg, #22c55e, #86efac);
+  color:#000;
+  border:none;
+}
+.btn:hover{
+  transform:translateY(-2px) scale(1.02);
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
 }
