@@ -2,19 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mahmudul Skin Care</title>
-  <meta name="description" content="Mahmudul Skin Care — skincare essentials in BDT." />
-
-  <!-- IMPORTANT: js class so reveal won't hide forever -->
-  <script>
-    document.documentElement.classList.add('js');
-  </script>
-
   <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
+
   <div class="topbar">
     <p>Free Delivery on orders over ৳2999 • Cash on Delivery Available</p>
   </div>
@@ -23,7 +16,7 @@
     <div class="container header__inner">
       <a class="brand" href="#">
         <div class="brand__mark">MSC</div>
-        <div class="brand__text">
+        <div>
           <div class="brand__name">Mahmudul Skin Care</div>
           <div class="brand__tag">Glow • Care • Confidence</div>
         </div>
@@ -36,38 +29,37 @@
       </nav>
 
       <button class="cartBtn" id="openCartBtn">
-        <span>Cart</span>
-        <span class="cartCount" id="cartCount">0</span>
+        Cart <span class="cartCount" id="cartCount">0</span>
       </button>
     </div>
   </header>
 
   <section class="hero">
     <div class="container hero__grid">
-      <div class="hero__left reveal">
-        <p class="pill">Made for daily routines • Gentle formulas</p>
+      <div class="hero__left">
+        <p class="pill">Daily routine • Gentle • Effective</p>
         <h1>Healthy glow starts with a simple routine.</h1>
-        <p class="sub">Brighten, hydrate, and protect — curated essentials for your skin goals.</p>
+        <p class="sub">Brighten, hydrate, protect — curated essentials in BDT.</p>
 
         <div class="hero__cta">
           <a class="btn btn--primary" href="#products">Shop Products</a>
-          <a class="btn" href="#why">See Benefits</a>
+          <a class="btn btn--secondary" href="#why">Explore Products</a>
         </div>
 
         <div class="trust">
-          <div class="trust__item">✅ Dermatology-inspired</div>
-          <div class="trust__item">✅ All skin types</div>
-          <div class="trust__item">✅ Everyday friendly</div>
+          <span class="trust__item">✅ All skin types</span>
+          <span class="trust__item">✅ Everyday friendly</span>
+          <span class="trust__item">✅ Fast delivery</span>
         </div>
       </div>
 
-      <div class="hero__right reveal">
+      <div class="hero__right">
         <div class="heroCard">
           <div class="heroCard__badge">Best Sellers</div>
           <div class="heroCard__title">Glow Trio Set</div>
-          <div class="heroCard__desc">Cleanser + Serum + SPF (bundle discount)</div>
+          <div class="heroCard__desc">Cleanser + Serum + SPF (bundle)</div>
           <div class="heroCard__price">৳ 2,999</div>
-          <button class="btn btn--primary btn--full" id="scrollToProducts">Explore Products</button>
+          <button class="btn btn--primary btn--full" id="scrollToProducts">Browse Products</button>
         </div>
         <div class="heroGlow" aria-hidden="true"></div>
       </div>
@@ -76,23 +68,23 @@
 
   <section class="section" id="why">
     <div class="container">
-      <div class="sectionHead reveal">
+      <div class="sectionHead">
         <h2>Why Mahmudul Skin Care</h2>
-        <p>Minimal routine, maximum glow — premium maroon vibe.</p>
+        <p>Clean, premium glass look — simple shopping experience.</p>
       </div>
 
       <div class="features">
-        <div class="feature reveal">
-          <h3>Targeted Solutions</h3>
-          <p>Dark spots, acne marks, dullness, dehydration — choose what you need.</p>
+        <div class="feature">
+          <h3>Targeted Care</h3>
+          <p>Brightening, acne care, hydration, SPF options.</p>
         </div>
-        <div class="feature reveal">
-          <h3>Lightweight Textures</h3>
-          <p>Fast-absorbing creams and serums designed for daily use.</p>
+        <div class="feature">
+          <h3>Light Texture</h3>
+          <p>Easy to use daily. Smooth and lightweight feel.</p>
         </div>
-        <div class="feature reveal">
-          <h3>Protection First</h3>
-          <p>SPF options for daytime, barrier support for nighttime.</p>
+        <div class="feature">
+          <h3>Checkout via WhatsApp</h3>
+          <p>Cart → Checkout → WhatsApp message auto ready.</p>
         </div>
       </div>
     </div>
@@ -100,46 +92,40 @@
 
   <section class="section section--alt" id="products">
     <div class="container">
-      <div class="sectionHead reveal">
+      <div class="sectionHead">
         <h2>All Products</h2>
         <p>Desktop এ এক লাইনে 3টা product দেখাবে।</p>
       </div>
 
-      <div class="toolbar reveal">
-        <input id="searchInput" class="search" type="search" placeholder="Search (serum, SPF, turmeric)..." />
+      <div class="toolbar">
+        <input id="searchInput" class="search" type="search" placeholder="Search (serum, SPF, toner)..." />
         <select id="sortSelect" class="select">
           <option value="featured">Sort: Featured</option>
-          <option value="low">Price: Low to High</option>
-          <option value="high">Price: High to Low</option>
-          <option value="name">Name: A to Z</option>
+          <option value="low">Price: Low → High</option>
+          <option value="high">Price: High → Low</option>
+          <option value="name">Name: A → Z</option>
         </select>
       </div>
 
-      <!-- This will be filled by JS -->
       <div id="productGrid" class="grid"></div>
-
-      <!-- Fallback message if JS blocked -->
-      <noscript>
-        <p class="muted">JavaScript off আছে—Products show করতে JavaScript on করতে হবে।</p>
-      </noscript>
     </div>
   </section>
 
   <section class="section" id="faq">
     <div class="container">
-      <div class="sectionHead reveal">
+      <div class="sectionHead">
         <h2>FAQ</h2>
         <p>Quick answers.</p>
       </div>
 
       <div class="faq">
-        <details class="reveal">
-          <summary>How do I place an order?</summary>
-          <p>Add items to cart, then click Checkout (demo).</p>
+        <details>
+          <summary>How do I order?</summary>
+          <p>Add to cart, then Checkout → WhatsApp will open with your order list.</p>
         </details>
-        <details class="reveal">
-          <summary>Can I change photos later?</summary>
-          <p>Yes. assets/p1.jpg…p30.jpg replace করলেই হবে।</p>
+        <details>
+          <summary>Can I change product images later?</summary>
+          <p>Yes. Replace images in assets/ folder, or use your own links in products.json.</p>
         </details>
       </div>
     </div>
@@ -149,33 +135,26 @@
     <div class="container footer__grid">
       <div>
         <div class="footer__brand">Mahmudul Skin Care</div>
-        <p class="muted">GitHub Pages ready.</p>
+        <p class="muted">Premium skincare — simple routine.</p>
       </div>
+
       <div>
         <div class="footer__title">Contact</div>
-        <div>
-  <div class="footer__title">Contact</div>
 
-  <p class="muted">
-    📧 <a href="mailto:mahmudulit1@gmail.com">mahmudulit1@gmail.com</a>
-  </p>
+        <p class="muted">
+          📧 <a href="mailto:mahmudulit1@gmail.com">mahmudulit1@gmail.com</a>
+        </p>
 
-  <p class="muted">
-    💬 <a href="https://wa.me/8801709856893" target="_blank">Chat on WhatsApp</a>
-  </p>
+        <p class="muted">
+          💬 <a href="https://wa.me/8801709856893" target="_blank">Chat on WhatsApp</a>
+        </p>
 
-  <div class="socials">
-    <a href="https://www.facebook.com/Mahmudulsecondid" target="_blank" aria-label="Facebook">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
-    </a>
-
-    <a href="https://www.instagram.com/mahmudul__75/" target="_blank" aria-label="Instagram">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram">
-    </a>
-  </div>
-</div>
-
+        <div class="socials">
+          <a href="https://www.facebook.com/Mahmudulsecondid" target="_blank" aria-label="Facebook">f</a>
+          <a href="https://www.instagram.com/mahmudul__75/" target="_blank" aria-label="Instagram">ig</a>
+        </div>
       </div>
+
       <div>
         <div class="footer__title">Links</div>
         <a class="footer__link" href="#products">Products</a>
@@ -183,12 +162,13 @@
         <a class="footer__link" href="#faq">FAQ</a>
       </div>
     </div>
+
     <div class="container footer__bottom">
-      <span class="muted">© <span id="year"></span> Mahmudul Skin Care</span>
+      © <span id="year"></span> Mahmudul Skin Care
     </div>
   </footer>
 
-  <!-- Cart -->
+  <!-- Cart drawer -->
   <aside class="cart" id="cart" aria-hidden="true">
     <div class="cart__overlay" id="cartOverlay"></div>
     <div class="cart__panel" role="dialog" aria-modal="true">
@@ -196,19 +176,20 @@
         <h3>Your Cart</h3>
         <button class="iconBtn" id="closeCartBtn">✕</button>
       </div>
+
       <div class="cart__body" id="cartItems"></div>
+
       <div class="cart__foot">
         <div class="cart__total">
           <span>Total</span>
           <strong id="cartTotal">৳ 0</strong>
         </div>
-        <button class="btn btn--primary btn--full" id="checkoutBtn">Checkout</button>
-        <p class="muted tiny">Demo checkout.</p>
+        <button class="btn btn--primary btn--full" id="checkoutBtn">Checkout (WhatsApp)</button>
+        <p class="muted tiny">Your order will be sent to WhatsApp.</p>
       </div>
     </div>
   </aside>
 
-  <!-- IMPORTANT: defer so DOM ready -->
   <script src="script.js" defer></script>
 </body>
 </html>
