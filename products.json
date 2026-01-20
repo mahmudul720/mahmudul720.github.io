@@ -1,20 +1,37 @@
 [
-  {
-    "id":"p1",
-    "name":"Vitamin C Brightening Serum",
-    "category":"Serum",
-    "price_bdt":950,
-    "size":"30ml",
-    "short":"Brightening • Dark spot care",
-    "image":""
-  },
-  {
-    "id":"p2",
-    "name":"Niacinamide Glow Cream",
-    "category":"Moisturizer",
-    "price_bdt":780,
-    "size":"50ml",
-    "short":"Oil control • Glow",
-    "image":""
-  }
+  { "id": 1, "name": "Radiance C Cream 2.1", "tag": "Brightening", "price": 2499, "img": "assets/p1.jpg" },
+  { "id": 2, "name": "Turmeric Glow Face Scrub", "tag": "Exfoliating", "price": 1599, "img": "assets/p2.jpg" },
+  { "id": 3, "name": "Vitamin C Booster Serum 20%", "tag": "Serum", "price": 2299, "img": "assets/p3.jpg" },
+  { "id": 4, "name": "Shield+Glow Sunscreen SPF50", "tag": "SPF", "price": 1899, "img": "assets/p4.jpg" },
+  { "id": 5, "name": "Maxi Bright Serum (Mild)", "tag": "Brightening", "price": 2199, "img": "assets/p5.jpg" },
+
+  { "id": 6, "name": "ClearCalm Acne Mask", "tag": "Acne Care", "price": 1499, "img": "assets/p6.jpg" },
+  { "id": 7, "name": "EvenTone Dark Spot Serum", "tag": "Dark Spots", "price": 2399, "img": "assets/p7.jpg" },
+  { "id": 8, "name": "GlowMist Vitamin Spray", "tag": "Hydration", "price": 1299, "img": "assets/p8.jpg" },
+  { "id": 9, "name": "Gentle Bright Face Wash", "tag": "Cleanser", "price": 999, "img": "assets/p9.jpg" },
+  { "id": 10, "name": "5-in-1 Smooth Soap Bar", "tag": "Soap", "price": 799, "img": "assets/p10.jpg" },
+
+  { "id": 11, "name": "Barrier Repair Night Cream", "tag": "Moisturizer", "price": 1999, "img": "assets/p11.jpg" },
+  { "id": 12, "name": "Niacinamide Balance Serum", "tag": "Oil Control", "price": 1799, "img": "assets/p12.jpg" },
+  { "id": 13, "name": "AHA/BHA Glow Toner", "tag": "Toner", "price": 1699, "img": "assets/p13.jpg" },
+  { "id": 14, "name": "HydraLock Hyaluronic Serum", "tag": "Hydration", "price": 1899, "img": "assets/p14.jpg" },
+  { "id": 15, "name": "CalmCare Cica Gel", "tag": "Soothing", "price": 1499, "img": "assets/p15.jpg" },
+
+  { "id": 16, "name": "Under-Eye Bright Cream", "tag": "Eye Care", "price": 1399, "img": "assets/p16.jpg" },
+  { "id": 17, "name": "Lip Bright Butter", "tag": "Lip Care", "price": 699, "img": "assets/p17.jpg" },
+  { "id": 18, "name": "Guava Sugar Lip Scrub", "tag": "Lip Care", "price": 599, "img": "assets/p18.jpg" },
+  { "id": 19, "name": "Daily Glow Moist Gel", "tag": "Moisturizer", "price": 1499, "img": "assets/p19.jpg" },
+  { "id": 20, "name": "Clay Detox Pore Mask", "tag": "Pore Care", "price": 1599, "img": "assets/p20.jpg" },
+
+  { "id": 21, "name": "Brighten Body Wash (Foam)", "tag": "Body", "price": 1499, "img": "assets/p21.jpg" },
+  { "id": 22, "name": "Silky Body Lotion (Glow)", "tag": "Body", "price": 1699, "img": "assets/p22.jpg" },
+  { "id": 23, "name": "Glow Body Oil 8oz", "tag": "Body Oil", "price": 1899, "img": "assets/p23.jpg" },
+  { "id": 24, "name": "Kojic-Inspired Soap Bar", "tag": "Body", "price": 899, "img": "assets/p24.jpg" },
+  { "id": 25, "name": "Exfoliating Body Cloth", "tag": "Tools", "price": 499, "img": "assets/p25.jpg" },
+
+  { "id": 26, "name": "Retinol-Lite Night Serum", "tag": "Anti-Aging", "price": 2499, "img": "assets/p26.jpg" },
+  { "id": 27, "name": "Peptide Firming Cream", "tag": "Anti-Aging", "price": 2599, "img": "assets/p27.jpg" },
+  { "id": 28, "name": "Bright Peel Pads (Gentle)", "tag": "Brightening", "price": 2299, "img": "assets/p28.jpg" },
+  { "id": 29, "name": "SpotFix Acne Gel", "tag": "Acne Care", "price": 999, "img": "assets/p29.jpg" },
+  { "id": 30, "name": "Soothe & Glow Face Set", "tag": "Bundle", "price": 2999, "img": "assets/p30.jpg" }
 ]
