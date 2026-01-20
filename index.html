@@ -4,17 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Mahmudul Skin Care</title>
-  <meta name="description" content="Glow-ready skincare for daily routines — Mahmudul Skin Care." />
+  <meta name="description" content="Mahmudul Skin Care — skincare essentials in BDT." />
+
+  <!-- IMPORTANT: js class so reveal won't hide forever -->
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <!-- Top bar -->
   <div class="topbar">
     <p>Free Delivery on orders over ৳2999 • Cash on Delivery Available</p>
   </div>
 
-  <!-- Header -->
   <header class="header">
     <div class="container header__inner">
       <a class="brand" href="#">
@@ -31,26 +35,25 @@
         <a href="#faq">FAQ</a>
       </nav>
 
-      <button class="cartBtn" id="openCartBtn" aria-label="Open cart">
+      <button class="cartBtn" id="openCartBtn">
         <span>Cart</span>
         <span class="cartCount" id="cartCount">0</span>
       </button>
     </div>
   </header>
 
-  <!-- Hero -->
   <section class="hero">
     <div class="container hero__grid">
       <div class="hero__left reveal">
         <p class="pill">Made for daily routines • Gentle formulas</p>
         <h1>Healthy glow starts with a simple routine.</h1>
-        <p class="sub">
-          Brighten, hydrate, and protect — a curated set of essentials that fits your skin goals.
-        </p>
+        <p class="sub">Brighten, hydrate, and protect — curated essentials for your skin goals.</p>
+
         <div class="hero__cta">
-          <a class="btn btn--primary" href="#products">Shop 30 Products</a>
-          <a class="btn btn--ghost" href="#why">See Benefits</a>
+          <a class="btn btn--primary" href="#products">Shop Products</a>
+          <a class="btn" href="#why">See Benefits</a>
         </div>
+
         <div class="trust">
           <div class="trust__item">✅ Dermatology-inspired</div>
           <div class="trust__item">✅ All skin types</div>
@@ -66,18 +69,16 @@
           <div class="heroCard__price">৳ 2,999</div>
           <button class="btn btn--primary btn--full" id="scrollToProducts">Explore Products</button>
         </div>
-
         <div class="heroGlow" aria-hidden="true"></div>
       </div>
     </div>
   </section>
 
-  <!-- Why us -->
   <section class="section" id="why">
     <div class="container">
       <div class="sectionHead reveal">
         <h2>Why Mahmudul Skin Care</h2>
-        <p>Minimal routine, maximum glow — with smooth feel and clean visuals.</p>
+        <p>Minimal routine, maximum glow — premium maroon vibe.</p>
       </div>
 
       <div class="features">
@@ -87,7 +88,7 @@
         </div>
         <div class="feature reveal">
           <h3>Lightweight Textures</h3>
-          <p>Fast-absorbing creams and serums designed for comfortable daily use.</p>
+          <p>Fast-absorbing creams and serums designed for daily use.</p>
         </div>
         <div class="feature reveal">
           <h3>Protection First</h3>
@@ -97,17 +98,97 @@
     </div>
   </section>
 
-  <!-- Products -->
   <section class="section section--alt" id="products">
     <div class="container">
       <div class="sectionHead reveal">
-        <h2>All Products (30)</h2>
-        <p>Each row shows 3 products on desktop. Use search to quickly find.</p>
+        <h2>All Products</h2>
+        <p>Desktop এ এক লাইনে 3টা product দেখাবে।</p>
       </div>
 
       <div class="toolbar reveal">
-        <input id="searchInput" class="search" type="search" placeholder="Search products (e.g., serum, SPF, turmeric)..." />
+        <input id="searchInput" class="search" type="search" placeholder="Search (serum, SPF, turmeric)..." />
         <select id="sortSelect" class="select">
           <option value="featured">Sort: Featured</option>
           <option value="low">Price: Low to High</option>
-          <option value="high">Price: High to
+          <option value="high">Price: High to Low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+      </div>
+
+      <!-- This will be filled by JS -->
+      <div id="productGrid" class="grid"></div>
+
+      <!-- Fallback message if JS blocked -->
+      <noscript>
+        <p class="muted">JavaScript off আছে—Products show করতে JavaScript on করতে হবে।</p>
+      </noscript>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="sectionHead reveal">
+        <h2>FAQ</h2>
+        <p>Quick answers.</p>
+      </div>
+
+      <div class="faq">
+        <details class="reveal">
+          <summary>How do I place an order?</summary>
+          <p>Add items to cart, then click Checkout (demo).</p>
+        </details>
+        <details class="reveal">
+          <summary>Can I change photos later?</summary>
+          <p>Yes. assets/p1.jpg…p30.jpg replace করলেই হবে।</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <div class="footer__brand">Mahmudul Skin Care</div>
+        <p class="muted">GitHub Pages ready.</p>
+      </div>
+      <div>
+        <div class="footer__title">Contact</div>
+        <p class="muted">Email: yourmail@example.com</p>
+        <p class="muted">WhatsApp: +8801XXXXXXXXX</p>
+      </div>
+      <div>
+        <div class="footer__title">Links</div>
+        <a class="footer__link" href="#products">Products</a>
+        <a class="footer__link" href="#why">Why Us</a>
+        <a class="footer__link" href="#faq">FAQ</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span class="muted">© <span id="year"></span> Mahmudul Skin Care</span>
+    </div>
+  </footer>
+
+  <!-- Cart -->
+  <aside class="cart" id="cart" aria-hidden="true">
+    <div class="cart__overlay" id="cartOverlay"></div>
+    <div class="cart__panel" role="dialog" aria-modal="true">
+      <div class="cart__head">
+        <h3>Your Cart</h3>
+        <button class="iconBtn" id="closeCartBtn">✕</button>
+      </div>
+      <div class="cart__body" id="cartItems"></div>
+      <div class="cart__foot">
+        <div class="cart__total">
+          <span>Total</span>
+          <strong id="cartTotal">৳ 0</strong>
+        </div>
+        <button class="btn btn--primary btn--full" id="checkoutBtn">Checkout</button>
+        <p class="muted tiny">Demo checkout.</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- IMPORTANT: defer so DOM ready -->
+  <script src="script.js" defer></script>
+</body>
+</html>
