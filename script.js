@@ -1,11 +1,22 @@
-/* Mahmudul Skin Care - Script (Robust) */
 console.log("script loaded ✅");
 
+const money = (n) => `৳ ${Number(n || 0).toLocaleString("en-US")}`;
+
 document.addEventListener("DOMContentLoaded", async () => {
-  const productGrid = document.getElementById("productGrid");
+  // year
+  const y = document.getElementById("year");
+  if (y) y.textContent = new Date().getFullYear();
+
+  const grid = document.getElementById("productGrid");
+  if (!grid) {
+    console.error("❌ #productGrid not found. index.html check করো.");
+    return;
+  }
+
   const searchInput = document.getElementById("searchInput");
   const sortSelect = document.getElementById("sortSelect");
 
+  // cart elements
   const cartEl = document.getElementById("cart");
   const openCartBtn = document.getElementById("openCartBtn");
   const closeCartBtn = document.getElementById("closeCartBtn");
@@ -13,20 +24,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const cartItems = document.getElementById("cartItems");
   const cartTotal = document.getElementById("cartTotal");
   const cartCount = document.getElementById("cartCount");
-  const yearEl = document.getElementById("year");
-  const scrollToProductsBtn = document.getElementById("scrollToProducts");
   const checkoutBtn = document.getElementById("checkoutBtn");
-
-  // If critical element missing, stop (prevents blank screen silent fail)
-  if (!productGrid) {
-    console.error("❌ #productGrid not found. Check index.html id.");
-    return;
-  }
-
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-  // ---------- Helpers ----------
-  const money = (n) => `৳ ${Number(n || 0).toLocaleString("en-US")}`;
+  const scrollBtn = document.getElementById("scrollToProducts");
 
   const state = {
     products: [],
@@ -44,14 +43,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     cartEl.setAttribute("aria-hidden", open ? "false" : "true");
   }
 
-  // ---------- Cart UI ----------
   if (openCartBtn) openCartBtn.addEventListener("click", () => setCart(true));
   if (closeCartBtn) closeCartBtn.addEventListener("click", () => setCart(false));
   if (cartOverlay) cartOverlay.addEventListener("click", () => setCart(false));
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") setCart(false);
-  });
+  document.addEventListener("keydown", (e) => e.key === "Escape" && setCart(false));
 
   function addToCart(id) {
     const found = state.cart.find((x) => x.id === id);
@@ -70,9 +65,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderCart();
   }
 
-  // expose for debugging if needed
-  window.__msc_changeQty = changeQty;
-
   function renderCart() {
     if (!cartCount || !cartItems || !cartTotal) return;
 
@@ -86,85 +78,58 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     let total = 0;
-    cartItems.innerHTML = state.cart
-      .map((item) => {
-        const p = state.products.find((x) => x.id === item.id);
-        if (!p) return "";
-        total += p.price * item.qty;
 
-        return `
-          <div class="cartItem">
-            <img src="${p.img}" alt="${p.name}" loading="lazy"
-              onerror="this.src='https://picsum.photos/200?random=${p.id}'" />
-            <div>
-              <p class="cartItem__name">${p.name}</p>
-              <p class="cartItem__price">${money(p.price)} • Qty: ${item.qty}</p>
-            </div>
-            <div class="qty">
-              <button data-qty="-1" data-id="${p.id}">−</button>
-              <button data-qty="1" data-id="${p.id}">+</button>
-            </div>
+    cartItems.innerHTML = state.cart.map((item) => {
+      const p = state.products.find((x) => x.id === item.id);
+      if (!p) return "";
+      total += p.price * item.qty;
+
+      return `
+        <div class="cartItem">
+          <img src="${p.img}" alt="${p.name}" onerror="this.src='https://picsum.photos/200?random=${p.id}'" />
+          <div>
+            <p class="cartItem__name">${p.name}</p>
+            <p class="cartItem__price">${money(p.price)} • Qty: ${item.qty}</p>
           </div>
-        `;
-      })
-      .join("");
+          <div class="qty">
+            <button data-id="${p.id}" data-d="-1">−</button>
+            <button data-id="${p.id}" data-d="1">+</button>
+          </div>
+        </div>
+      `;
+    }).join("");
 
     cartTotal.textContent = money(total);
 
-    // attach qty buttons
-    cartItems.querySelectorAll("button[data-qty]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const id = Number(btn.getAttribute("data-id"));
-        const delta = Number(btn.getAttribute("data-qty"));
-        changeQty(id, delta);
+    cartItems.querySelectorAll("button[data-id]").forEach((b) => {
+      b.addEventListener("click", () => {
+        changeQty(Number(b.dataset.id), Number(b.dataset.d));
       });
     });
   }
 
-  // ---------- Reveal Animation ----------
-  let revealObserver;
+  // reveal
   function observeReveals() {
-    if (revealObserver) revealObserver.disconnect();
-
     const els = document.querySelectorAll(".reveal");
-    revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-visible");
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
 
-    els.forEach((el) => revealObserver.observe(el));
+    els.forEach((el) => obs.observe(el));
   }
 
-  // Product title stagger animation
-  function animateTitles() {
-    const titles = document.querySelectorAll(".title");
-    titles.forEach((t, i) => {
-      t.style.opacity = "0";
-      t.style.transform = "translateY(8px)";
-      t.style.transition = "opacity .45s ease, transform .45s ease";
-      setTimeout(() => {
-        t.style.opacity = "1";
-        t.style.transform = "translateY(0)";
-      }, 60 + i * 18);
-    });
-  }
-
-  // ---------- Products ----------
   function filteredProducts() {
     let list = [...state.products];
     const q = state.query.trim().toLowerCase();
     if (q) {
-      list = list.filter(
-        (p) =>
-          (p.name || "").toLowerCase().includes(q) ||
-          (p.tag || "").toLowerCase().includes(q)
+      list = list.filter((p) =>
+        (p.name || "").toLowerCase().includes(q) ||
+        (p.tag || "").toLowerCase().includes(q)
       );
     }
 
@@ -177,13 +142,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   function renderProducts() {
     const list = filteredProducts();
 
-    productGrid.innerHTML = list
-      .map(
-        (p) => `
+    grid.innerHTML = list.map((p) => `
       <article class="card reveal">
         <div class="thumb">
           <img src="${p.img}" alt="${p.name}" loading="lazy"
-            onerror="this.src='https://picsum.photos/600/420?random=${p.id}'" />
+               onerror="this.src='https://picsum.photos/600/420?random=${p.id}'" />
         </div>
         <div class="body">
           <h3 class="title">${p.name}</h3>
@@ -197,20 +160,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           </div>
         </div>
       </article>
-    `
-      )
-      .join("");
+    `).join("");
 
-    // add-to-cart buttons
-    productGrid.querySelectorAll("button[data-add]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const id = Number(btn.getAttribute("data-add"));
-        addToCart(id);
-      });
+    grid.querySelectorAll("button[data-add]").forEach((btn) => {
+      btn.addEventListener("click", () => addToCart(Number(btn.dataset.add)));
     });
 
     observeReveals();
-    animateTitles();
   }
 
   if (searchInput) {
@@ -227,90 +183,44 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  if (scrollToProductsBtn) {
-    scrollToProductsBtn.addEventListener("click", () => {
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener("click", () => {
+      alert("Demo checkout ✅\nNext: WhatsApp order/payment gateway connect করা যাবে.");
+    });
+  }
+
+  if (scrollBtn) {
+    scrollBtn.addEventListener("click", () => {
       document.getElementById("products")?.scrollIntoView({ behavior: "smooth" });
     });
   }
 
-  if (checkoutBtn) {
-    checkoutBtn.addEventListener("click", () => {
-      alert("Demo checkout ✅\nNext step: WhatsApp order / payment gateway connect করা যাবে.");
-    });
-  }
-
-  // ---------- Load products.json OR fallback ----------
-  const fallbackProducts = [
-    { id: 1,  name: "Radiance C Cream 2.1",        tag: "Brightening",  price: 2499, img: "assets/p1.jpg" },
-    { id: 2,  name: "Turmeric Glow Face Scrub",    tag: "Exfoliating",  price: 1599, img: "assets/p2.jpg" },
-    { id: 3,  name: "Vitamin C Booster Serum 20%", tag: "Anti-Aging",   price: 2299, img: "assets/p3.jpg" },
-    { id: 4,  name: "Shield+Glow Sunscreen SPF50", tag: "SPF",          price: 1899, img: "assets/p4.jpg" },
-    { id: 5,  name: "Maxi Bright Serum (Mild)",    tag: "Brightening",  price: 2199, img: "assets/p5.jpg" },
-    { id: 6,  name: "ClearCalm Acne Mask",         tag: "Acne Care",    price: 1499, img: "assets/p6.jpg" },
-    { id: 7,  name: "EvenTone Dark Spot Serum",    tag: "Dark Spots",   price: 2399, img: "assets/p7.jpg" },
-    { id: 8,  name: "GlowMist Vitamin Spray",      tag: "Hydration",    price: 1299, img: "assets/p8.jpg" },
-    { id: 9,  name: "Gentle Bright Face Wash",     tag: "Cleanser",     price: 999,  img: "assets/p9.jpg" },
-    { id: 10, name: "5-in-1 Smooth Soap Bar",      tag: "Multi-Use",    price: 799,  img: "assets/p10.jpg" },
-    { id: 11, name: "Barrier Repair Night Cream",  tag: "Moisturizer",  price: 1999, img: "assets/p11.jpg" },
-    { id: 12, name: "Niacinamide Balance Serum",   tag: "Oil Control",  price: 1799, img: "assets/p12.jpg" },
-    { id: 13, name: "AHA/BHA Glow Toner",          tag: "Exfoliating",  price: 1699, img: "assets/p13.jpg" },
-    { id: 14, name: "HydraLock Hyaluronic Serum",  tag: "Hydration",    price: 1899, img: "assets/p14.jpg" },
-    { id: 15, name: "CalmCare Cica Gel",           tag: "Soothing",     price: 1499, img: "assets/p15.jpg" },
-    { id: 16, name: "Under-Eye Bright Cream",      tag: "Eye Care",     price: 1399, img: "assets/p16.jpg" },
-    { id: 17, name: "Lip Bright Butter",           tag: "Lip Care",     price: 699,  img: "assets/p17.jpg" },
-    { id: 18, name: "Guava Sugar Lip Scrub",       tag: "Lip Care",     price: 599,  img: "assets/p18.jpg" },
-    { id: 19, name: "Daily Glow Moist Gel",        tag: "Moisturizer",  price: 1499, img: "assets/p19.jpg" },
-    { id: 20, name: "Clay Detox Pore Mask",        tag: "Pore Care",    price: 1599, img: "assets/p20.jpg" },
-    { id: 21, name: "Brighten Body Wash (Foam)",   tag: "Body",         price: 1499, img: "assets/p21.jpg" },
-    { id: 22, name: "Silky Body Lotion (Glow)",    tag: "Body",         price: 1699, img: "assets/p22.jpg" },
-    { id: 23, name: "Glow Body Oil 8oz",           tag: "Body",         price: 1899, img: "assets/p23.jpg" },
-    { id: 24, name: "Kojic-Inspired Soap Bar",     tag: "Body",         price: 899,  img: "assets/p24.jpg" },
-    { id: 25, name: "Exfoliating Body Cloth",      tag: "Tools",        price: 499,  img: "assets/p25.jpg" },
-    { id: 26, name: "Retinol-Lite Night Serum",    tag: "Anti-Aging",   price: 2499, img: "assets/p26.jpg" },
-    { id: 27, name: "Peptide Firming Cream",       tag: "Anti-Aging",   price: 2599, img: "assets/p27.jpg" },
-    { id: 28, name: "Bright Peel Pads (Gentle)",   tag: "Brightening",  price: 2299, img: "assets/p28.jpg" },
-    { id: 29, name: "SpotFix Acne Gel",            tag: "Acne Care",    price: 999,  img: "assets/p29.jpg" },
-    { id: 30, name: "Soothe & Glow Face Set",      tag: "Bundle",       price: 2999, img: "assets/p30.jpg" },
-  ];
-
   async function loadProducts() {
-    try {
-      // products.json থাকলে সেখান থেকে নেবে
-      const res = await fetch("products.json", { cache: "no-store" });
-      if (!res.ok) throw new Error("products.json not found (using fallback).");
-      const data = await res.json();
+    // products.json must be valid JSON array
+    const res = await fetch("products.json", { cache: "no-store" });
+    const data = await res.json();
 
-      if (!Array.isArray(data) || data.length === 0) {
-        throw new Error("products.json is empty/invalid (using fallback).");
-      }
+    if (!Array.isArray(data)) throw new Error("products.json must be an array []");
 
-      // normalize
-      const normalized = data.map((p, idx) => ({
-        id: Number(p.id ?? idx + 1),
-        name: String(p.name ?? `Product ${idx + 1}`),
-        tag: String(p.tag ?? "Skincare"),
-        price: Number(p.price ?? 999),
-        img: String(p.img ?? `assets/p${idx + 1}.jpg`),
-      }));
-
-      console.log("✅ Loaded products from products.json:", normalized.length);
-      return normalized;
-    } catch (err) {
-      console.warn("⚠️", err.message);
-      console.log("✅ Using fallback products:", fallbackProducts.length);
-      return fallbackProducts;
-    }
+    return data.map((p, i) => ({
+      id: Number(p.id ?? (i + 1)),
+      name: String(p.name ?? `Product ${i + 1}`),
+      tag: String(p.tag ?? "Skincare"),
+      price: Number(p.price ?? 999),
+      img: String(p.img ?? `assets/p${i + 1}.jpg`),
+    }));
   }
 
-  // Init
-  state.products = await loadProducts();
+  try {
+    state.products = await loadProducts();
+    console.log("✅ products loaded:", state.products.length);
+  } catch (err) {
+    console.error("❌ products.json error:", err);
+    grid.innerHTML = `<p class="muted">products.json এ সমস্যা আছে। Error: ${err.message}</p>`;
+    return;
+  }
+
   renderProducts();
   renderCart();
   observeReveals();
-
-  // Make top sections visible even if some have reveal
-  document.querySelectorAll(".reveal").forEach((el) => {
-    // if observer fails, still show after 2s
-    setTimeout(() => el.classList.add("is-visible"), 2000);
-  });
 });
