@@ -1,12 +1,14 @@
-:root{
-  --bg:#0b0507;
-  --text:#fff7f8;
-  --muted:rgba(255,247,248,.72);
-  --line:rgba(255,247,248,.14);
-  --accent:#7a0f1a;
-  --accent2:#d34b5a;
+:root:root{
+  --bg:#ffffff;                 /* white background */
+  --text:#3b1b7a;               /* purple text */
+  --muted:rgba(59,27,122,.68);
+  --line:rgba(59,27,122,.18);
+  --accent:#6d28d9;             /* purple accent */
+  --accent2:#a855f7;            /* light purple */
   --radius:18px;
 }
+
+
 
 *{box-sizing:border-box}
 html,body{
