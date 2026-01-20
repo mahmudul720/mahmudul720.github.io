@@ -6,15 +6,17 @@
   <title>Mahmudul Skin Care</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
 
+<body>
+  <!-- TOP BAR -->
   <div class="topbar">
     <p>Free Delivery on orders over ৳2999 • Cash on Delivery Available</p>
   </div>
 
+  <!-- HEADER -->
   <header class="header">
     <div class="container header__inner">
-      <a class="brand" href="#">
+      <a class="brand" href="#top" aria-label="Mahmudul Skin Care Home">
         <div class="brand__mark">MSC</div>
         <div>
           <div class="brand__name">Mahmudul Skin Care</div>
@@ -22,21 +24,22 @@
         </div>
       </a>
 
-      <nav class="nav">
+      <nav class="nav" aria-label="Primary">
         <a href="#products">Products</a>
         <a href="#why">Why Us</a>
         <a href="#faq">FAQ</a>
       </nav>
 
-      <button class="cartBtn" id="openCartBtn">
+      <button class="cartBtn" id="openCartBtn" type="button">
         Cart <span class="cartCount" id="cartCount">0</span>
       </button>
     </div>
   </header>
 
-  <section class="hero">
+  <!-- HERO -->
+  <section class="hero" id="top">
     <div class="container hero__grid">
-      <div class="hero__left">
+      <div class="hero__left reveal">
         <p class="pill">Daily routine • Gentle • Effective</p>
         <h1>Healthy glow starts with a simple routine.</h1>
         <p class="sub">Brighten, hydrate, protect — curated essentials in BDT.</p>
@@ -53,36 +56,39 @@
         </div>
       </div>
 
-      <div class="hero__right">
+      <div class="hero__right reveal">
         <div class="heroCard">
           <div class="heroCard__badge">Best Sellers</div>
           <div class="heroCard__title">Glow Trio Set</div>
           <div class="heroCard__desc">Cleanser + Serum + SPF (bundle)</div>
           <div class="heroCard__price">৳ 2,999</div>
-          <button class="btn btn--primary btn--full" id="scrollToProducts">Browse Products</button>
+          <button class="btn btn--primary btn--full" id="scrollToProducts" type="button">
+            Browse Products
+          </button>
         </div>
         <div class="heroGlow" aria-hidden="true"></div>
       </div>
     </div>
   </section>
 
+  <!-- WHY US -->
   <section class="section" id="why">
     <div class="container">
-      <div class="sectionHead">
+      <div class="sectionHead reveal">
         <h2>Why Mahmudul Skin Care</h2>
-        <p>Clean, premium glass look — simple shopping experience.</p>
+        <p>Clean, premium glass design — easy shopping experience.</p>
       </div>
 
       <div class="features">
-        <div class="feature">
+        <div class="feature reveal">
           <h3>Targeted Care</h3>
           <p>Brightening, acne care, hydration, SPF options.</p>
         </div>
-        <div class="feature">
+        <div class="feature reveal">
           <h3>Light Texture</h3>
           <p>Easy to use daily. Smooth and lightweight feel.</p>
         </div>
-        <div class="feature">
+        <div class="feature reveal">
           <h3>Checkout via WhatsApp</h3>
           <p>Cart → Checkout → WhatsApp message auto ready.</p>
         </div>
@@ -90,14 +96,15 @@
     </div>
   </section>
 
+  <!-- PRODUCTS -->
   <section class="section section--alt" id="products">
     <div class="container">
-      <div class="sectionHead">
+      <div class="sectionHead reveal">
         <h2>All Products</h2>
-        <p>Desktop এ এক লাইনে 3টা product দেখাবে।</p>
+        <p>Desktop এ এক লাইনে ৩টা product দেখাবে।</p>
       </div>
 
-      <div class="toolbar">
+      <div class="toolbar reveal">
         <input id="searchInput" class="search" type="search" placeholder="Search (serum, SPF, toner)..." />
         <select id="sortSelect" class="select">
           <option value="featured">Sort: Featured</option>
@@ -107,30 +114,39 @@
         </select>
       </div>
 
-      <div id="productGrid" class="grid"></div>
+      <!-- ✅ MUST MATCH script.js -->
+      <div id="productGrid" class="grid reveal"></div>
     </div>
   </section>
 
+  <!-- FAQ -->
   <section class="section" id="faq">
     <div class="container">
-      <div class="sectionHead">
+      <div class="sectionHead reveal">
         <h2>FAQ</h2>
         <p>Quick answers.</p>
       </div>
 
       <div class="faq">
-        <details>
+        <details class="reveal">
           <summary>How do I order?</summary>
           <p>Add to cart, then Checkout → WhatsApp will open with your order list.</p>
         </details>
-        <details>
+
+        <details class="reveal">
+          <summary>Do you deliver all over Bangladesh?</summary>
+          <p>Yes. Delivery time depends on location. COD available in many areas.</p>
+        </details>
+
+        <details class="reveal">
           <summary>Can I change product images later?</summary>
-          <p>Yes. Replace images in assets/ folder, or use your own links in products.json.</p>
+          <p>Yes. Replace images in assets/ folder, or update products.json image links.</p>
         </details>
       </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer__grid">
       <div>
@@ -140,14 +156,8 @@
 
       <div>
         <div class="footer__title">Contact</div>
-
-        <p class="muted">
-          📧 <a href="mailto:mahmudulit1@gmail.com">mahmudulit1@gmail.com</a>
-        </p>
-
-        <p class="muted">
-          💬 <a href="https://wa.me/8801709856893" target="_blank">Chat on WhatsApp</a>
-        </p>
+        <p class="muted">📧 <a href="mailto:mahmudulit1@gmail.com">mahmudulit1@gmail.com</a></p>
+        <p class="muted">💬 <a href="https://wa.me/8801709856893" target="_blank">Chat on WhatsApp</a></p>
 
         <div class="socials">
           <a href="https://www.facebook.com/Mahmudulsecondid" target="_blank" aria-label="Facebook">f</a>
@@ -168,13 +178,14 @@
     </div>
   </footer>
 
-  <!-- Cart drawer -->
+  <!-- CART DRAWER (✅ MUST MATCH script.js IDs) -->
   <aside class="cart" id="cart" aria-hidden="true">
     <div class="cart__overlay" id="cartOverlay"></div>
+
     <div class="cart__panel" role="dialog" aria-modal="true">
       <div class="cart__head">
         <h3>Your Cart</h3>
-        <button class="iconBtn" id="closeCartBtn">✕</button>
+        <button class="iconBtn" id="closeCartBtn" type="button">✕</button>
       </div>
 
       <div class="cart__body" id="cartItems"></div>
@@ -184,13 +195,31 @@
           <span>Total</span>
           <strong id="cartTotal">৳ 0</strong>
         </div>
-        <button class="btn btn--primary btn--full" id="checkoutBtn">Checkout (WhatsApp)</button>
+
+        <button class="btn btn--primary btn--full" id="checkoutBtn" type="button">
+          Checkout (WhatsApp)
+        </button>
+
         <p class="muted tiny">Your order will be sent to WhatsApp.</p>
       </div>
     </div>
   </aside>
 
-  <script src="script.js" defer></script>
+  <!-- ✅ IMPORTANT: script at bottom -->
+  <script src="./script.js"></script>
+
+  <!-- Simple animation: reveal on scroll (no conflict if script.js works) -->
+  <script>
+    // If main script fails, this still runs (tiny helper)
+    try {
+      const els = document.querySelectorAll(".reveal");
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if(e.isIntersecting) e.target.classList.add("is-visible");
+        });
+      }, {threshold: 0.12});
+      els.forEach(el => io.observe(el));
+    } catch(e){}
+  </script>
 </body>
 </html>
-
