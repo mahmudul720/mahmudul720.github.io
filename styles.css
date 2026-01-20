@@ -262,3 +262,7 @@ a{text-decoration:none;color:inherit}
   opacity:1;
   transform:none;
 }
+.card:hover .title{transform:translateY(-2px);letter-spacing:.2px}
+.reveal{opacity:0;transform:translateY(18px);transition:.7s}
+.reveal.is-visible{opacity:1;transform:none}
+
