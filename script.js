@@ -183,9 +183,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  if (checkoutBtn) {
-    checkoutBtn.addEventListener("click", () => {
-      alert("Demo checkout ✅\nNext: WhatsApp order/payment gateway connect করা যাবে.");
+  checkoutBtn.addEventListener("click", () => {
+  const phone = "8801709856893";
+
+  const message = encodeURIComponent(
+    "Hello! I want to place an order from Mahmudul Skin Care.\n\n" +
+    "🛒 My Order:\n" +
+    state.cart.map(item => {
+      const p = state.products.find(x => x.id === item.id);
+      return `• ${p.name} (Qty: ${item.qty})`;
+    }).join("\n") +
+    "\n\nPlease confirm availability & price."
+  );
+
+  const url = `https://wa.me/${phone}?text=${message}`;
+  window.open(url, "_blank");
+});
+
     });
   }
 
