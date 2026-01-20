@@ -208,3 +208,4 @@ document.addEventListener("DOMContentLoaded", async () => {
   renderProducts();
   renderCart();
 });
+alert("JS WORKING 123");
